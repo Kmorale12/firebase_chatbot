@@ -27,7 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _loadUserData();
   }
 
-  Future<void> _loadUserData() async {
+  Future<void> _loadUserData() async { //used to load the user data
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
@@ -43,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  Future<void> _updateUserData() async {
+  Future<void> _updateUserData() async { //used to update the user data
     if (_formKey.currentState!.validate()) {
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
@@ -53,7 +53,7 @@ class _SettingsPageState extends State<SettingsPage> {
         if (_passwordController.text.isNotEmpty) {
           await user.updatePassword(_passwordController.text);
         }
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({ //used to update the user data
           'firstName': _firstNameController.text,
           'lastName': _lastNameController.text,
           'role': _roleController.text,
@@ -146,7 +146,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ElevatedButton(
                 onPressed: () {
                   widget.authService.signOut();
-                  Navigator.of(context).pushReplacementNamed('/login');
+                  Navigator.of(context).pushReplacementNamed('/login'); //used to navigate to the login page
                 },
                 child: Text('Logout'),
               ),

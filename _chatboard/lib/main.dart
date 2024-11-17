@@ -16,7 +16,6 @@ void main() async {
 
   // Call the Firestore setup functions
   addMessageBoards();
-  addInitialMessages();
 }
 
 class MyApp extends StatelessWidget {
@@ -61,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class RegisterEmailSection extends StatefulWidget {
+class RegisterEmailSection extends StatefulWidget { //used to set up the register email section
   RegisterEmailSection({Key? key, required this.authService}) : super(key: key);
   final AuthService authService;
 
@@ -70,8 +69,8 @@ class RegisterEmailSection extends StatefulWidget {
 }
 
 class _RegisterEmailSectionState extends State<RegisterEmailSection> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); //used to set up the form key
+  final TextEditingController _emailController = TextEditingController(); //used to set up the email controller
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -80,13 +79,13 @@ class _RegisterEmailSectionState extends State<RegisterEmailSection> {
   bool _initialState = true;
   String? _userEmail;
 
-  void _register() async {
-    User? user = await widget.authService.registerWithEmailAndPassword(
+  void _register() async { //used to register the user
+    User? user = await widget.authService.registerWithEmailAndPassword( 
       _emailController.text,
       _passwordController.text,
     );
     if (user != null) {
-      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({ //used to set the user
         'firstName': _firstNameController.text,
         'lastName': _lastNameController.text,
         'role': _roleController.text,
@@ -158,7 +157,7 @@ class _RegisterEmailSectionState extends State<RegisterEmailSection> {
             },
             obscureText: true,
           ),
-          Container(
+          Container( //used to set up the container
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             alignment: Alignment.center,
             child: ElevatedButton(
@@ -187,7 +186,7 @@ class _RegisterEmailSectionState extends State<RegisterEmailSection> {
   }
 }
 
-class EmailPasswordForm extends StatefulWidget {
+class EmailPasswordForm extends StatefulWidget { //used to set up the email password form
   EmailPasswordForm({Key? key, required this.authService}) : super(key: key);
   final AuthService authService;
 
@@ -203,7 +202,7 @@ class _EmailPasswordFormState extends State<EmailPasswordForm> {
   bool _initialState = true;
   String _userEmail = '';
 
-  void _signInWithEmailAndPassword() async {
+  void _signInWithEmailAndPassword() async { //used to sign in the user
     User? user = await widget.authService.signInWithEmailAndPassword(
       _emailController.text,
       _passwordController.text,
@@ -240,7 +239,7 @@ class _EmailPasswordFormState extends State<EmailPasswordForm> {
             },
           ),
           TextFormField(
-            controller: _passwordController,
+            controller: _passwordController, //used to set up the password controller
             decoration: InputDecoration(labelText: 'Password'),
             validator: (value) {
               if (value?.isEmpty ?? true) {

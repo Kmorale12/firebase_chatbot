@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 void addMessageBoards() async {
-  CollectionReference messageBoards = FirebaseFirestore.instance.collection('messageBoards');
+  CollectionReference messageBoards = FirebaseFirestore.instance.collection('messageBoards'); //used to add the message boards to the database
 
-  await messageBoards.doc('general_discussion').set({
+  await messageBoards.doc('general_discussion').set({ //used to set the message boards
     'name': 'General Discussion',
     'image': 'assets/general.png',
   });
@@ -13,33 +13,8 @@ void addMessageBoards() async {
     'image': 'assets/tech.png',
   });
 
-  await messageBoards.doc('random').set({
-    'name': 'Random',
+  await messageBoards.doc('cars').set({
+    'name': 'Cars',
     'image': 'assets/random.png',
-  });
-}
-
-void addInitialMessages() async {
-  await _addMessagesToBoard('general_discussion');
-  await _addMessagesToBoard('tech_talk');
-  await _addMessagesToBoard('random');
-}
-
-Future<void> _addMessagesToBoard(String boardId) async {
-  CollectionReference messages = FirebaseFirestore.instance
-      .collection('messageBoards')
-      .doc(boardId)
-      .collection('messages');
-
-  await messages.add({
-    'datetime': Timestamp.now(),
-    'message': 'Welcome to $boardId!',
-    'username': 'Admin',
-  });
-
-  await messages.add({
-    'datetime': Timestamp.now(),
-    'message': 'Feel free to start the conversation.',
-    'username': 'Admin',
   });
 }

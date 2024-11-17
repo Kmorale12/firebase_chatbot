@@ -41,13 +41,13 @@ class _ProfilePageState extends State<ProfilePage> {
     if (_formKey.currentState!.validate()) {
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({ //used to update the user data
           'firstName': _firstNameController.text,
           'lastName': _lastNameController.text,
           'role': _roleController.text,
           'dob': _dobController.text,
         });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Profile updated successfully')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Profile updated successfully'))); //used to show the snackbar
       }
     }
   }

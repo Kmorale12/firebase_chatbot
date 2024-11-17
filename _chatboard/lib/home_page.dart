@@ -10,10 +10,10 @@ class HomePage extends StatelessWidget {
 
   HomePage({required this.authService}); // Update the constructor
 
-  final List<Map<String, String>> messageBoards = [
+  final List<Map<String, String>> messageBoards = [ //used to create the message boards
     {'name': 'General Discussion', 'image': 'assets/general.png'},
     {'name': 'Tech Talk', 'image': 'assets/tech.png'},
-    {'name': 'Random', 'image': 'assets/random.png'},
+    {'name': 'Cars', 'image': 'assets/cars.png'},
   ];
 
   @override

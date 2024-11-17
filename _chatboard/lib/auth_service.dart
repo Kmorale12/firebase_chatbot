@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthService {
+class AuthService { //used from previous classwork
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   // Register with email and password

@@ -11,7 +11,7 @@ class ChatPage extends StatefulWidget {
   _ChatPageState createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _ChatPageState extends State<ChatPage> { //used to set up the chat page
   final TextEditingController _messageController = TextEditingController();
   final User? _user = FirebaseAuth.instance.currentUser;
 
@@ -24,19 +24,19 @@ class _ChatPageState extends State<ChatPage> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: StreamBuilder<QuerySnapshot>(
+            child: StreamBuilder<QuerySnapshot>( //used to build the chat page
               stream: FirebaseFirestore.instance
-                  .collection('messageBoards')
+                  .collection('messageBoards') //used to get the messages from the database
                   .doc(widget.boardName)
-                  .collection('messages')
+                  .collection('messages') 
                   .orderBy('datetime', descending: true)
                   .snapshots(),
-              builder: (context, snapshot) {
+              builder: (context, snapshot) { //used to build the chat page
                 if (!snapshot.hasData) {
                   return Center(child: CircularProgressIndicator());
                 }
                 var messages = snapshot.data!.docs;
-                print('Messages fetched: ${messages.length}');
+                print('Messages fetched: ${messages.length}'); //used to print the messages
                 for (var message in messages) {
                   print('Message: ${message['message']}');
                 }
@@ -47,7 +47,7 @@ class _ChatPageState extends State<ChatPage> {
                     var message = messages[index];
                     return ListTile(
                       title: Text(message['message']),
-                      subtitle: Text('${message['username']} - ${message['datetime'].toDate()}'),
+                      subtitle: Text('${message['username']} - ${message['datetime'].toDate()}'), //used to display the username and the date
                     );
                   },
                 );
